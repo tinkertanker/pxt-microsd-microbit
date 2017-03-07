@@ -1,0 +1,16 @@
+{
+    "name": "ky040",
+    "version": "0.0.1",
+    "description": "Tinkercademy package for KY-040 rotary encoder",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "shims.d.ts",
+        "enums.d.ts",
+        "ky040.cpp"
+    ],
+    "public": true
+}
