@@ -2,30 +2,99 @@
 
 
 
-    //% color=50 weight=80
-declare namespace RotaryEncoder {
+    //% color=70 weight=80
+declare namespace SD {
 
     /**
-     * rotated.
+     * more secret stuff!
      */
-    //% blockId=rotary_ky_rotated_left_event
-    //% block="on rotated |%dir" shim=RotaryEncoder::onRotateEvent
-    function onRotateEvent(dir: RotationDirection, body: () => void): void;
+    //% blockId=sd_open_filehandle
+    //% block="open a filehandle for %file" shim=SD::fileHandle
+    function fileHandle(file: string): void;
 
     /**
-     * button pressed.
+     * secret stuff!
      */
-    //% blockId=rotary_ky_pressed_event
-    //% block="on button pressed" shim=RotaryEncoder::onPressEvent
-    function onPressEvent(body: () => void): void;
+    //% blockId=sd_read_sixteen
+    //% block="16 bytes from the filehandle" shim=SD::readAligned
+    function readAligned(): string;
 
     /**
-     * initialises local variablesssss
+     *more secret stuffffff
      */
-    //% blockId=rotary_ky_init
-    //% block="connect clk %clk|dt %dt|sw %sw"
-    //% icon="\uf1ec" shim=RotaryEncoder::init
-    function init(clk: DigitalPin, dt: DigitalPin, sw: DigitalPin): void;
+    //% blockId=sd_read_byte
+    //% block="1 byte from filehandle" shim=SD::readSingleByte
+    function readSingleByte(): number;
+
+    /**
+     * final secret item
+     */
+    //% blockId=sd_close_filehandle
+    //% block="close filehandle" shim=SD::closeFile
+    function closeFile(): void;
+
+    /**
+     * reads a file from the sd card.
+     */
+    //% blockId=sd_read_file
+    //% block="the contents of |%file" shim=SD::readFile
+    function readFile(file: string): string;
+
+    /**
+     * creates a file on the sd card.
+     */
+    //% blockId=sd_create_file
+    //% block="create a file called |%file" shim=SD::createFile
+    function createFile(file: string): void;
+
+    /**
+     * creates a folder on the sd card.
+     */
+    //% blockId=sd_create_folder
+    //% block="create a folder called |%folder" shim=SD::createFolder
+    function createFolder(file: string): void;
+
+    /**
+     * checks if a file exists (will return false on folder as well)
+     */
+    //% blockId=sd_file_exists
+    //% block="the file %file| exists" shim=SD::fileExists
+    function fileExists(file: string): boolean;
+
+    /**
+     * checks if a folder exists
+     */
+    //% blockId=sd_folder_exists
+    //% block="the folder %folder| exists" shim=SD::folderExists
+    function folderExists(folder: string): boolean;
+
+    /**
+     * returns the amount of stuff in a folder
+     */
+    //% blockId=sd_lscount
+    //% block="the number of items in folder %folder|" shim=SD::contents
+    function contents(folder: string): number;
+
+    /**
+     * gets the i-th item in a folder
+     */
+    //% blockId=sd_ls
+    //% block="the %count|th item in %folder|" shim=SD::getItem
+    function getItem(count: number, folder: string): string;
+
+    /**
+     * writes a string to a file.
+     */
+    //% blockId=sd_write_file
+    //% block="write %stuff| to %file|" shim=SD::writeFile
+    function writeFile(stuff: string, file: string): void;
+
+    /**
+     * initialises the sd card.
+     */
+    //% blockId=sd_init
+    //% block="connected SD to |%pin" shim=SD::connect
+    function connect(pin: Pins): void;
 }
 
 // Auto-generated. Do not edit. Really.
