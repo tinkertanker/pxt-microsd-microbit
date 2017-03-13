@@ -40,7 +40,7 @@ namespace SD {
   * more secret stuff!
   */
   //% blockId=sd_open_filehandle
-  //% block="open a filehandle for %file for reading? %read"
+  //% block="open a filehandle for %file| for reading? %read|"
   void fileHandle(StringData *file, bool read){
     sprintf(buf, "/sd/%s", file->data);
     if(read) f = fopen(buf, "r");
