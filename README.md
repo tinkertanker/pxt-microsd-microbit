@@ -10,3 +10,7 @@ how do i sdcard????
  - CLK -> SCLK
  - D3 -> CS (12/16)
  - D1, D2 and WP can be left floating.
+
+
+
+the EF breakout probably won't work without stepping it up to 5V first, because there is an unbypassable 3V3 LDO on the VCC line.
