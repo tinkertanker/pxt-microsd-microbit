@@ -1,9 +1,16 @@
-how do i rotary encoder?
+how do i sdcard????
+
+**important notes about connecting the SF breakout**
+
+ - vcc -> vcc
+ - gnd -> gnd
+ - cmd -> MOSI (labelled MISO on the breakout)
+ - D0 -> MISO (labelled MOSI on the breakout)
+ - CD -> gnd
+ - CLK -> SCLK
+ - D3 -> CS (12/16)
+ - D1, D2 and WP can be left floating.
 
 
 
-known issues:
-
- - button is broken
-
- - there are hardcoded event and device IDs - not sure if it's possible to work around this
+the EF breakout probably won't work without stepping it up to 5V first, because there is an unbypassable 3V3 LDO on the VCC line.
