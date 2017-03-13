@@ -40,10 +40,11 @@ namespace SD {
   * more secret stuff!
   */
   //% blockId=sd_open_filehandle
-  //% block="open a filehandle for %file"
-  void fileHandle(StringData *file){
+  //% block="open a filehandle for %file for reading? %read"
+  void fileHandle(StringData *file, bool read){
     sprintf(buf, "/sd/%s", file->data);
-    f = fopen(buf, "r");
+    if(read) f = fopen(buf, "r");
+    else f= fopen(buf, "a");
   }
 
   /**
@@ -75,6 +76,15 @@ namespace SD {
   void closeFile(){
     fclose(f);
     free(f);
+  }
+
+  /**
+  * i guess it's not so secret
+  */
+  //% blockId=sd_write_filehandle
+  //% block="write %str| to filehandle"
+  void writeFileHandle(StringData *str){
+    fwrite(str->data, sizeof(char), strlen(str->data), f);
   }
 
   /**

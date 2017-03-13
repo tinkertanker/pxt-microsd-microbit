@@ -9,8 +9,8 @@ declare namespace SD {
      * more secret stuff!
      */
     //% blockId=sd_open_filehandle
-    //% block="open a filehandle for %file" shim=SD::fileHandle
-    function fileHandle(file: string): void;
+    //% block="open a filehandle for %file for reading? %read" shim=SD::fileHandle
+    function fileHandle(file: string, read: boolean): void;
 
     /**
      * secret stuff!
@@ -32,6 +32,13 @@ declare namespace SD {
     //% blockId=sd_close_filehandle
     //% block="close filehandle" shim=SD::closeFile
     function closeFile(): void;
+
+    /**
+     * i guess it's not so secret
+     */
+    //% blockId=sd_write_filehandle
+    //% block="write %str| to filehandle" shim=SD::writeFileHandle
+    function writeFileHandle(str: string): void;
 
     /**
      * reads a file from the sd card.
