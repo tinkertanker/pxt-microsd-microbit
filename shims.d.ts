@@ -9,7 +9,7 @@ declare namespace SD {
      * more secret stuff!
      */
     //% blockId=sd_open_filehandle
-    //% block="open a filehandle for %file for reading? %read" shim=SD::fileHandle
+    //% block="open a filehandle for %file| for reading? %read|" shim=SD::fileHandle
     function fileHandle(file: string, read: boolean): void;
 
     /**
