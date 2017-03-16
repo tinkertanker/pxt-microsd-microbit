@@ -31,20 +31,9 @@ typedef struct {
 	BYTE	wflag;			
 	BYTE	fsi_flag;		
 	WORD	id;				
-	WORD	n_rootdir;		
-#if _MAX_SS != _MIN_SS
-	WORD	ssize;			
-#endif
-#if _FS_REENTRANT
-	_SYNC_t	sobj;			
-#endif
-#if !_FS_READONLY
+	WORD	n_rootdir;
 	DWORD	last_clust;		
-	DWORD	free_clust;		
-#endif
-#if _FS_RPATH
-	DWORD	cdir;			
-#endif
+	DWORD	free_clust;
 	DWORD	n_fatent;		
 	DWORD	fsize;			
 	DWORD	volbase;		
@@ -63,20 +52,9 @@ typedef struct {
 	DWORD	fsize;			
 	DWORD	sclust;			
 	DWORD	clust;			
-	DWORD	dsect;			
-#if !_FS_READONLY
+	DWORD	dsect;	
 	DWORD	dir_sect;		
-	BYTE*	dir_ptr;		
-#endif
-#if _USE_FASTSEEK
-	DWORD*	cltbl;			
-#endif
-#if _FS_LOCK
-	UINT	lockid;			
-#endif
-#if !_FS_TINY
-	BYTE	buf[_MAX_SS];	
-#endif
+	BYTE*	dir_ptr;
 } FIL;
 typedef struct {
 	FATFS*	fs;				
@@ -86,28 +64,18 @@ typedef struct {
 	DWORD	clust;			
 	DWORD	sect;			
 	BYTE*	dir;			
-	BYTE*	fn;				
-#if _FS_LOCK
-	UINT	lockid;			
-#endif
-#if _USE_LFN
+	BYTE*	fn;	
 	WCHAR*	lfn;			
-	WORD	lfn_idx;		
-#endif
-#if _USE_FIND
-	const char*	pat;	
-#endif
+	WORD	lfn_idx;
 } FATFS_DIR;
 typedef struct {
 	DWORD	fsize;			
 	WORD	fdate;			
 	WORD	ftime;			
 	BYTE	fattrib;		
-	char	fname[13];		
-#if _USE_LFN
+	char	fname[13];
 	char*	lfname;			
-	UINT 	lfsize;			
-#endif
+	UINT 	lfsize;
 } FILINFO;
 typedef enum {
 	FR_OK = 0,				
@@ -191,14 +159,12 @@ int ff_del_syncobj (_SYNC_t sobj);
 #endif
 #define	FA_READ				0x01
 #define	FA_OPEN_EXISTING	0x00
-#if !_FS_READONLY
 #define	FA_WRITE			0x02
 #define	FA_CREATE_NEW		0x04
 #define	FA_CREATE_ALWAYS	0x08
 #define	FA_OPEN_ALWAYS		0x10
 #define FA__WRITTEN			0x20
 #define FA__DIRTY			0x40
-#endif
 #define FS_FAT12	1
 #define FS_FAT16	2
 #define FS_FAT32	3
@@ -210,18 +176,11 @@ int ff_del_syncobj (_SYNC_t sobj);
 #define AM_DIR	0x10	
 #define AM_ARC	0x20	
 #define AM_MASK	0x3F	
-#define CREATE_LINKMAP	0xFFFFFFFF
-#if _WORD_ACCESS == 1	
-#define	LD_WORD(ptr)		(WORD)(*(WORD*)(BYTE*)(ptr))
-#define	LD_DWORD(ptr)		(DWORD)(*(DWORD*)(BYTE*)(ptr))
-#define	ST_WORD(ptr,val)	*(WORD*)(BYTE*)(ptr)=(WORD)(val)
-#define	ST_DWORD(ptr,val)	*(DWORD*)(BYTE*)(ptr)=(DWORD)(val)
-#else					
+#define CREATE_LINKMAP	0xFFFFFFFF				
 #define	LD_WORD(ptr)		(WORD)(((WORD)*((BYTE*)(ptr)+1)<<8)|(WORD)*(BYTE*)(ptr))
 #define	LD_DWORD(ptr)		(DWORD)(((DWORD)*((BYTE*)(ptr)+3)<<24)|((DWORD)*((BYTE*)(ptr)+2)<<16)|((WORD)*((BYTE*)(ptr)+1)<<8)|*(BYTE*)(ptr))
 #define	ST_WORD(ptr,val)	*(BYTE*)(ptr)=(BYTE)(val); *((BYTE*)(ptr)+1)=(BYTE)((WORD)(val)>>8)
 #define	ST_DWORD(ptr,val)	*(BYTE*)(ptr)=(BYTE)(val); *((BYTE*)(ptr)+1)=(BYTE)((WORD)(val)>>8); *((BYTE*)(ptr)+2)=(BYTE)((DWORD)(val)>>16); *((BYTE*)(ptr)+3)=(BYTE)((DWORD)(val)>>24)
-#endif
 #ifdef __cplusplus
 }
 #endif

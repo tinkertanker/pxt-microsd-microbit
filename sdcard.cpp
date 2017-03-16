@@ -32,7 +32,6 @@ P15= 21,
 P16= 16,
 P19= 0,
 P20= 30};
-
 //% color=70 weight=80
 namespace SD {
 
