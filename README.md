@@ -1,5 +1,3 @@
-for PXT/microbit
-
 how do i sdcard????
 
 **important notes about connecting the SF breakout**
